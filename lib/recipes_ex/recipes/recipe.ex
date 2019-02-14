@@ -12,6 +12,8 @@ defmodule RecipesEx.Recipes.Recipe do
 
   @doc false
   def changeset(recipe, attrs) do
-    {:error, :not_yet_implemented}
+    recipe
+    |> cast(attrs, [:directions, :name])
+    |> validate_required([:directions, :name])
   end
 end

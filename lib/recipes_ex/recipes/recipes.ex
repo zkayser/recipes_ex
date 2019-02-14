@@ -18,7 +18,7 @@ defmodule RecipesEx.Recipes do
 
   """
   def list_recipes do
-    {:error, :not_yet_implemented}
+    Repo.all(Recipe)
   end
 
   @doc """
@@ -35,7 +35,7 @@ defmodule RecipesEx.Recipes do
       ** (Ecto.NoResultsError)
 
   """
-  def get_recipe!(id), do: {:error, :not_yet_implemented}
+  def get_recipe!(id), do: Repo.get(Recipe, id)
 
   @doc """
   Creates a recipe.
@@ -50,7 +50,9 @@ defmodule RecipesEx.Recipes do
 
   """
   def create_recipe(attrs \\ %{}) do
-    {:error, :not_yet_implemented}
+    %Recipe{}
+    |> Recipe.changeset(attrs)
+    |> Repo.insert()
   end
 
   @doc """
@@ -66,7 +68,9 @@ defmodule RecipesEx.Recipes do
 
   """
   def update_recipe(%Recipe{} = recipe, attrs) do
-    {:error, :not_yet_implemented}
+    recipe
+    |> Recipe.changeset(attrs)
+    |> Repo.update()
   end
 
   @doc """
@@ -82,7 +86,7 @@ defmodule RecipesEx.Recipes do
 
   """
   def delete_recipe(%Recipe{} = recipe) do
-    {:error, :not_yet_implemented}
+    Repo.delete(recipe)
   end
 
   @doc """
@@ -95,6 +99,6 @@ defmodule RecipesEx.Recipes do
 
   """
   def change_recipe(%Recipe{} = recipe) do
-    {:error, :not_yet_implemented}
+    Recipe.changeset(recipe, %{})
   end
 end
